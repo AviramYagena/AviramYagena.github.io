@@ -35,5 +35,5 @@ jobs:
           git commit -m "Deploy static site"
           git branch -M gh-pages
           # Replace the URL below with your repository URL if necessary
-          git remote add origin https://github.com/AviramYagena/AviramYagena.github.io.git
+          git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/AviramYagena/AviramYagena.github.io.git
           git push -f origin gh-pages
