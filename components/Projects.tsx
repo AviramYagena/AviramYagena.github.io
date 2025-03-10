@@ -2,11 +2,11 @@
 
 import React from "react";
 import { GlassButton } from "./ui/GlassButton"; // Ensure this path is correct
-import "@/styles/ProjectsCards.css"; // The new card/hover styles
+import "@/styles/ProjectsCards.css";
 
 /**
  * Projects component for the portfolio website.
- * Demonstrates the updated layout & hover-reveal animated card style.
+ * Displays two sections: one for projects and another for game development.
  */
 export function Projects() {
   // --------------- "Projects" Data (with images) ---------------
@@ -17,7 +17,6 @@ export function Projects() {
         "Advanced risk management tool for NinjaTrader, providing real-time protection through customizable profiles and risk thresholds.",
       features: [
         "Free",
-        
         "60+ active users",
         "Automated emailing and ticketing system",
         "Custom licensing implementation",
@@ -29,7 +28,6 @@ export function Projects() {
       title: "Automated Strategy Backtesting System",
       description:
         "A Python-based backtesting system that autonomously refines trading strategies through iterative analysis, optimization algorithms, and high-performance computing.",
-
       features: [
         "Autonomous iterative analysis",
         "Segmentation of historical price action & indicators",
@@ -37,7 +35,6 @@ export function Projects() {
         "Parallel processing & vectorized calculations",
         "Flexible, AI-ready architecture",
       ],
-
       image: "/images/automated_backtester.jpg",
       link: "",
     },
@@ -111,9 +108,7 @@ export function Projects() {
     <section id="projects" className="border-t border-gray-200 bg-gray-100 py-20">
       <div className="container mx-auto px-4">
         {/* -------------- Projects Section -------------- */}
-        <h2 className="mb-12 text-center text-4xl font-bold text-black">
-          Projects
-        </h2>
+        <h2 className="mb-12 text-center text-4xl font-bold text-black">Projects</h2>
         <div className="page-content">
           {projectsData.map((proj, i) => (
             <div
@@ -121,7 +116,6 @@ export function Projects() {
               className="card"
               style={
                 {
-                  // Set the custom --bg-image property if image exists.
                   "--bg-image": proj.image ? `url(${proj.image})` : undefined,
                 } as React.CSSProperties
               }
@@ -129,8 +123,6 @@ export function Projects() {
               <div className="content">
                 <h3 className="title">{proj.title}</h3>
                 <p className="copy">{proj.description}</p>
-
-                {/* Features */}
                 {proj.features?.length > 0 && (
                   <ul style={{ textAlign: "left", marginTop: "0.5rem" }}>
                     {proj.features.map((feature, idx) => (
@@ -140,8 +132,6 @@ export function Projects() {
                     ))}
                   </ul>
                 )}
-
-                {/* Glass Button if link is available */}
                 {proj.link && proj.link.trim() !== "" && (
                   <GlassButton
                     label="Learn More"
@@ -165,8 +155,6 @@ export function Projects() {
               className="card"
               style={
                 {
-                  /* Set the custom --bg-image property if image is provided,
-                     else fallback to #202020 from CSS */
                   "--bg-image": game.image ? `url(${game.image})` : undefined,
                 } as React.CSSProperties
               }
@@ -174,8 +162,6 @@ export function Projects() {
               <div className="content">
                 <h3 className="title">{game.title}</h3>
                 <p className="copy">{game.description}</p>
-
-                {/* Glass Button if link is available */}
                 {game.link && game.link.trim() !== "" && (
                   <GlassButton
                     label="Watch"

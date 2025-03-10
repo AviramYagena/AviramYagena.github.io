@@ -72,13 +72,13 @@ body {
   align-items: flex-end;
   overflow: hidden;
   width: 100%;
-  /* Enforce a 16:9 aspect ratio */
+  /* Enforce a 16:9 aspect ratio on larger screens */
   aspect-ratio: 16 / 9;
   padding: 1rem;
   text-align: center;
   color: #ffffff;
   background-color: #fff; /* behind the .card::before overlay */
-  border-radius: var(--button-radius);
+  border-radius: var(--border-radius);
   
   /* Box shadow with moderate depth */
   box-shadow: 
@@ -178,7 +178,7 @@ body {
   border: none;
   outline: none;
   transition: background-color 200ms linear;
-  border-radius: var(--button-radius);
+  border-radius: var(--border-radius);
 }
 .btn:hover {
   background-color: #333;
@@ -232,5 +232,18 @@ body {
   .card:focus-within &::after,
   .card:focus-within .content > *:not(.title) {
     transition-duration: 0s;
+  }
+}
+
+/* ========== MOBILE OVERRIDES ========== */
+@media (max-width: 599px) {
+  .card {
+    /* Remove fixed aspect ratio so that height auto-adjusts with content */
+    aspect-ratio: auto;
+    height: auto;
+  }
+  /* Ensure content is fully visible on mobile */
+  .content {
+    transform: none;
   }
 }
