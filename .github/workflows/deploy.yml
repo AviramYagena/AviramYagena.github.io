@@ -1,0 +1,39 @@
+name: Deploy to GitHub Pages
+
+# Trigger the workflow on push to main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project (static export)
+        run: npm run build
+
+      # The build command uses output: 'export' in next.config.js, generating an "out" folder
+      - name: Deploy to GitHub Pages
+        run: |
+          cd out
+          git init
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add .
+          git commit -m "Deploy static site"
+          git branch -M gh-pages
+          # Replace the URL below with your repository URL if necessary
+          git remote add origin https://github.com/AviramYagena/AviramYagena.github.io.git
+          git push -f origin gh-pages
