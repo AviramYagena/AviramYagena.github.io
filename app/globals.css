@@ -1,0 +1,82 @@
+/* --------------------------------------------------------
+   Tailwind Base, Components, and Utilities 
+-------------------------------------------------------- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------------------------------------------------------
+   Basic Global Resets & Body Styles
+-------------------------------------------------------- */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;  /* White background */
+  color: #000000;             /* Black text for readability */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* --------------------------------------------------------
+   Additional Utility Classes
+-------------------------------------------------------- */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* --------------------------------------------------------
+   Theme Variables (Minimal & White-Based)
+-------------------------------------------------------- */
+@layer base {
+  :root {
+    /* Primary tokens for minimal design */
+    --primary: 0 0% 20%;           /* Dark gray (almost black) for accents */
+    --primary-foreground: 100%;    /* White */
+    --accent: 200 15% 60%;         /* Soft blue accent */
+    --accent-foreground: 0 0% 0%;   /* Black */
+    
+    /* Additional tokens */
+    --background: #ffffff;         /* White */
+    --foreground: #000000;         /* Black */
+    --card: #ffffff;               /* White cards */
+    --card-foreground: #000000;    /* Black text on cards */
+    --popover: #ffffff;
+    --popover-foreground: #000000;
+    --secondary: #e5e5e5;          /* Light gray */
+    --secondary-foreground: #000000;
+    --muted: #f7f7f7;
+    --muted-foreground: #000000;
+    --destructive: #ffdddd;
+    --destructive-foreground: #000000;
+    --border: #d1d1d1;
+    --input: #ffffff;
+    --ring: #cbd5e0;              /* Light blue-gray for focus rings */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark mode overrides (if needed, but this minimal theme is white-based) */
+    --background: #ffffff;
+    --foreground: #000000;
+    --card: #ffffff;
+    --card-foreground: #000000;
+    --popover: #ffffff;
+    --popover-foreground: #000000;
+    --primary: 0 0% 20%;
+    --primary-foreground: 100%;
+    --secondary: #e5e5e5;
+    --secondary-foreground: #000000;
+    --muted: #f7f7f7;
+    --muted-foreground: #000000;
+    --accent: 200 15% 60%;
+    --accent-foreground: #000000;
+    --destructive: #ffdddd;
+    --destructive-foreground: #000000;
+    --border: #d1d1d1;
+    --input: #ffffff;
+    --ring: #cbd5e0;
+  }
+}

@@ -1,0 +1,266 @@
+/****************************************
+ * Glass Button Styles - GlassButton.css
+ ****************************************/
+
+/* Custom CSS properties for animations */
+@property --angle-1 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -75deg;
+}
+
+@property --angle-2 {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: -45deg;
+}
+
+/* Timings and sizing for transitions */
+:root {
+  --global--size: clamp(2rem, 4vw, 5rem);
+  --anim--hover-time: 400ms;
+  --anim--hover-ease: cubic-bezier(0.25, 1, 0.5, 1);
+
+  /* NEW: control corner roundness here. Increase or decrease as you like. */
+  --button-radius: 20px;
+}
+
+/* ================== BUTTON WRAP ================== */
+.button-wrap {
+  position: relative;
+  z-index: 2;
+  /* old: border-radius: 999vw; */
+  border-radius: var(--button-radius);
+  background: transparent;
+  pointer-events: none;
+  transition: all var(--anim--hover-time) var(--anim--hover-ease);
+}
+
+/* ================== SHADOW BEHIND BUTTON ================== */
+.button-shadow {
+  --shadow-cuttoff-fix: 2em;
+  position: absolute;
+  width: calc(100% + var(--shadow-cuttoff-fix));
+  height: calc(100% + var(--shadow-cuttoff-fix));
+  top: calc(0% - var(--shadow-cuttoff-fix) / 2);
+  left: calc(0% - var(--shadow-cuttoff-fix) / 2);
+  filter: blur(clamp(2px, 0.125em, 12px));
+  pointer-events: none;
+}
+
+/* The gradient used for the shadow behind the button */
+.button-shadow::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  /* old: border-radius: 999vw; */
+  border-radius: var(--button-radius);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+  width: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
+  height: calc(100% - var(--shadow-cuttoff-fix) - 0.25em);
+  top: calc(var(--shadow-cuttoff-fix) - 0.5em);
+  left: calc(var(--shadow-cuttoff-fix) - 0.875em);
+  padding: 0.125em;
+  box-sizing: border-box;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: all var(--anim--hover-time) var(--anim--hover-ease);
+  opacity: 1;
+}
+
+/* ================== BUTTON ITSELF ================== */
+button.glass-btn {
+  /* Basic reset/format */
+  all: unset;
+  cursor: pointer;
+  position: relative;
+  pointer-events: auto;
+  z-index: 3;
+
+  /* Glass effect styles */
+  --border-width: clamp(1px, 0.0625em, 4px);
+  background: linear-gradient(
+    -75deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.05)
+  );
+  /* old: border-radius: 999vw; */
+  border-radius: var(--button-radius);
+
+  box-shadow:
+    inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+    inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+    0 0.25em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+    0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2),
+    0 0 0 0 rgba(255, 255, 255, 1);
+  backdrop-filter: blur(clamp(1px, 0.125em, 4px));
+  transition: all var(--anim--hover-time) var(--anim--hover-ease);
+}
+
+/* Hover scale/smaller blur */
+button.glass-btn:hover {
+  transform: scale(0.975);
+  box-shadow:
+    inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+    inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+    0 0.15em 0.05em -0.1em rgba(0, 0, 0, 0.25),
+    0 0 0.05em 0.1em inset rgba(255, 255, 255, 0.5),
+    0 0 0 0 rgba(255, 255, 255, 1);
+}
+
+/* Button text (the <span>) */
+button.glass-btn span {
+  position: relative;
+  display: block;
+  user-select: none;
+  font-family: "Inter", sans-serif;
+  letter-spacing: -0.05em;
+  font-weight: var(--btn-font-weight, 400); /* Default to 400 if not overridden */
+  font-size: 1em;
+  color: var(--btn-text-color, rgb(0, 0, 0));
+  text-shadow: 0em 0.25em 0.05em rgba(0, 0, 0, 0.1);
+  transition: all var(--anim--hover-time) var(--anim--hover-ease);
+  padding-inline: 1.5em;
+  padding-block: 0.875em;
+}
+
+
+
+/* Hover text shadow tweak */
+button.glass-btn:hover span {
+  text-shadow: 0.025em 0.025em 0.025em rgba(0, 0, 0, 0.12);
+}
+
+/* Animated highlight overlay inside button text */
+button.glass-btn span::after {
+  content: "";
+  position: absolute;
+  width: calc(100% - var(--border-width));
+  height: calc(100% - var(--border-width));
+  top: calc(0% + var(--border-width) / 2);
+  left: calc(0% + var(--border-width) / 2);
+  /* old: border-radius: 999vw; */
+  border-radius: var(--button-radius);
+
+  background: linear-gradient(
+    var(--angle-2),
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 40% 50%,
+    rgba(255, 255, 255, 0) 55%
+  );
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  background-repeat: no-repeat;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transition:
+    background-position calc(var(--anim--hover-time) * 1.25)
+      var(--anim--hover-ease),
+    --angle-2 calc(var(--anim--hover-time) * 1.25) var(--anim--hover-ease);
+}
+
+/* Hover shifts the highlight gradient */
+button.glass-btn:hover span::after {
+  background-position: 25% 50%;
+}
+
+/* Click effect for highlight angle */
+button.glass-btn:active span::after {
+  background-position: 50% 15%;
+  --angle-2: -15deg;
+}
+
+/* Outline ring around button */
+button.glass-btn::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  /* old: border-radius: 999vw; */
+  border-radius: var(--button-radius);
+
+  width: calc(100% + var(--border-width));
+  height: calc(100% + var(--border-width));
+  top: calc(0% - var(--border-width) / 2);
+  left: calc(0% - var(--border-width) / 2);
+  padding: var(--border-width);
+  box-sizing: border-box;
+  background: conic-gradient(
+      from var(--angle-1) at 50% 50%,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0) 5% 40%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0) 60% 95%,
+      rgba(0, 0, 0, 0.5)
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: all var(--anim--hover-time) var(--anim--hover-ease),
+    --angle-1 500ms ease;
+  box-shadow: inset 0 0 0 calc(var(--border-width) / 2) rgba(255, 255, 255, 0.5);
+}
+
+/* Conic gradient angles on hover/click */
+button.glass-btn:hover::after {
+  --angle-1: -125deg;
+}
+
+button.glass-btn:active::after {
+  --angle-1: -75deg;
+}
+
+/* ================== SHADOW HOVER STATES ================== */
+.button-wrap:has(button.glass-btn:hover) .button-shadow {
+  filter: blur(clamp(2px, 0.0625em, 6px));
+  transition: filter var(--anim--hover-time) var(--anim--hover-ease);
+}
+
+.button-wrap:has(button.glass-btn:hover) .button-shadow::after {
+  top: calc(var(--shadow-cuttoff-fix) - 0.875em);
+  opacity: 1;
+}
+
+.button-wrap:has(button.glass-btn:active) {
+  transform: rotate3d(1, 0, 0, 25deg);
+}
+
+.button-wrap:has(button.glass-btn:active) button.glass-btn {
+  box-shadow:
+    inset 0 0.125em 0.125em rgba(0, 0, 0, 0.05),
+    inset 0 -0.125em 0.125em rgba(255, 255, 255, 0.5),
+    0 0.125em 0.125em -0.125em rgba(0, 0, 0, 0.2),
+    0 0 0.1em 0.25em inset rgba(255, 255, 255, 0.2),
+    0 0.225em 0.05em 0 rgba(0, 0, 0, 0.05),
+    0 0.25em 0 0 rgba(255, 255, 255, 0.75),
+    inset 0 0.25em 0.05em 0 rgba(0, 0, 0, 0.15);
+}
+
+.button-wrap:has(button.glass-btn:active) .button-shadow {
+  filter: blur(clamp(2px, 0.125em, 12px));
+}
+
+.button-wrap:has(button.glass-btn:active) .button-shadow::after {
+  top: calc(var(--shadow-cuttoff-fix) - 0.5em);
+  opacity: 0.75;
+}
+
+/* Adjust text shadow on active click */
+.button-wrap:has(button.glass-btn:active) span {
+  text-shadow: 0.025em 0.25em 0.05em rgba(0, 0, 0, 0.12);
+}
+
+/* ================== TOUCH DEVICES ================== */
+@media (hover: none) and (pointer: coarse) {
+  button.glass-btn span::after,
+  button.glass-btn:active span::after {
+    --angle-2: -45deg;
+  }
+  button.glass-btn::after,
+  button.glass-btn:hover::after,
+  button.glass-btn:active::after {
+    --angle-1: -75deg;
+  }
+}

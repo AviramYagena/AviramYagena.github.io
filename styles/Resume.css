@@ -1,0 +1,12 @@
+.svg-icon {
+  width: 2rem;
+  height: 2rem;
+  filter: brightness(0) invert(1);
+}
+.skill-icon {
+  font-size: 2rem; /* For react-icons */
+  width: 2rem;     /* For images */
+  height: 2rem;    /* For images */
+  filter: brightness(0) invert(1); /* Ensures white color for images */
+}
+

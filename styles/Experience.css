@@ -1,0 +1,49 @@
+/* Experience.css */
+
+/* Base font styling */
+body,
+h2 {
+  font-family: "Poppins", sans-serif;
+}
+
+/* Grid container for the icons with no gap */
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 1.5rem; /* No gap for closer grouping */
+  align-items: center;
+  justify-items: center;
+}
+
+/* Each experience item */
+.experience-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Pulsating (pulse) animation keyframes */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* Apply the animation to all SVG icons and images.
+   The animation delay is taken from the custom property --icon-delay.
+*/
+.experience-icon > svg,
+.experience-icon > img {
+  font-size: 4rem; /* Uniform icon size */
+  color: rgb(255, 255, 255);
+  animation: pulse 4s ease-in-out infinite;
+  animation-delay: var(--icon-delay, 0ms);
+}
+
+/* For custom images (if needed, override here) */
+.experience-icon img {
+  width: 5rem;
+  height: 4rem;
+  filter: brightness(0) invert(1);
+}
+
+/* (No text names displayed as per your request) */
