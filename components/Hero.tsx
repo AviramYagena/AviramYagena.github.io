@@ -2,8 +2,8 @@
 
 import React, { useEffect } from "react";
 import "@/styles/HeroBubbles.css";
-import { GlassButton } from "./ui/GlassButton"; // Ensure this path is correct
-import { ScrambleRole } from "./ui/ScrambleRole"; // New scramble component
+import { GlassButton } from "./ui/GlassButton"; 
+import { ScrambleRole } from "./ui/ScrambleRole"; 
 
 export function Hero() {
   // Replicate the interactive bubble behavior

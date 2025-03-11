@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { GlassButton } from "./ui/GlassButton"; // Ensure this path is correct
+import { GlassButton } from "./ui/GlassButton";
 import "@/styles/ProjectsCards.css";
 
 /**
