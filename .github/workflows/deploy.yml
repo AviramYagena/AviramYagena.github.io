@@ -1,10 +1,12 @@
 name: Deploy to GitHub Pages
 
-# Trigger the workflow on push to main branch
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -21,19 +23,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build project (static export)
+      - name: Build Next.js
         run: npm run build
 
-      # The build command uses output: 'export' in next.config.js, generating an "out" folder
       - name: Deploy to GitHub Pages
-        run: |
-          cd out
-          git init
-          git config user.name "GitHub Action"
-          git config user.email "action@github.com"
-          git add .
-          git commit -m "Deploy static site"
-          git branch -M gh-pages
-          git remote add origin https://x-access-token:${{ secrets.DEPLOY_TOKEN }}@github.com/AviramYagena/AviramYagena.github.io.git
-          git push -f origin gh-pages
-
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out  # Make sure this is where Next.js builds the static files
+          publish_branch: gh-pages
