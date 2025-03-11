@@ -14,9 +14,7 @@ import {
   SiNodedotjs,
   SiPhp,
 } from "react-icons/si";
-import { FaGitAlt } from "react-icons/fa";
-import "@/styles/Experience.css";      // Styles for grid/icon layout
-import "@/styles/HeroBubbles.css";     // Bubbles background styles
+import "../styles/Experience.css";
 
 /**
  * Experience component for the portfolio website.

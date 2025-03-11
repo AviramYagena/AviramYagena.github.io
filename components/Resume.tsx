@@ -73,7 +73,7 @@ export default function Resume() {
           <div>
             <div className="relative w-32 h-32 mb-2">
               <Image
-                src="/aviram.jpg"
+                src="/images/aviram.jpg"
                 alt="Aviram Yagena"
                 layout="fill"
                 objectFit="cover"

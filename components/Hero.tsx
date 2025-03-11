@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect } from "react";
-import "@/styles/HeroBubbles.css";
 import { GlassButton } from "./ui/GlassButton"; 
 import { ScrambleRole } from "./ui/ScrambleRole"; 
 

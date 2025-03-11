@@ -2,7 +2,7 @@
 
 import React from "react";
 import { GlassButton } from "./ui/GlassButton";
-import "@/styles/ProjectsCards.css";
+import "../styles/ProjectsCards.css";
 
 /**
  * Projects component for the portfolio website.
